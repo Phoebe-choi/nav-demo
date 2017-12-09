@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+	<meta charset="utf-8">
+	<title>我的导航页面</title>
+	<link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+	<header></header>
+	<main>
+		<div class="wrapper" id="mainXXX">
+			
+		</div>
+	</main>
+	<footer></footer>
+	<script>
+		//声明一个二维数组
+		var keys={
+			'0':{0:'q',1:'w',2:'e',3:'r',4:'t',5:'y',6:'u',7:'i',8:'o',9:'p',length:10},
+			'1':{0:'a',1:'s',2:'d',3:'f',4:'g',5:'h',6:'j',7:'k',8:'l',length:9},
+			'2':{0:'z',1:'x',2:'c',3:'v',4:'b',5:'n',6:'m',length:7},
+			'length':3
+		}
+		//每个按键对应的网址
+		var hash={
+			'q':'qq.com',
+			'w':'weibo.com',
+			'e':'ele.me',
+			'r':'renren.com',
+			't':'tianya.com',
+			'y':'yoohu.com',
+			'u':'uc.com',
+			'i':'iqiyi.com',
+			'o':'opera.com',
+			'p': undefined,
+			'a':'acfun.com',
+			's':'sohu.com',
+			'j':'jianshu.com/users/bcdb7f2b8518/timeline',
+			'z':'zhihu.com',
+			'm':'mcdonalds.com.cn'
+		}
+		var hashInLocalStorage=JSON.parse(localStorage.getItem('zzz')||'null')
+		if(hashInLocalStorage){ //覆盖之前的页面
+				hash=hashInLocalStorage
+		}
+		//遍历keys，生成kbd标签
+		index=0
+		while(index<keys['length']){ 
+			div1=document.createElement('div') 
+			mainXXX.appendChild(div1) 
+			row=keys[index] //第一个数组 第二个数组 第三个数组
+			console.log(row) //打印
+			index2=0
+			while(index2<row['length']){
+			keybd=document.createElement('kbd')
+			keybd.textContent=row[index2]
+			buttonX=document.createElement('button')
+			buttonX.textContent='编辑'
+			buttonX.id=row[index2]
+			buttonX.onclick=function(xzkjcnxlkcjlk){
+				key=(xzkjcnxlkcjlk['target']['id'])
+				x=prompt('给我一个网址')
+				hash[key]=x 
+				localStorage.setItem('zzz',JSON.stringify(hash))//只要hash变更了，就把hash存到zzz里面
+				console.log(hash)
+			}
+		 //target:被用户点击的按钮，这里用target而不能用buttonX的原因是因为button是一个容器
+			keybd.appendChild(buttonX)
+			div1.appendChild(keybd)
+			index2=index2+1				
+			}
+			index=index+1
+		}
+		//监听键盘事件
+		document.onkeypress=function(xzkjcnxlkcjlk){
+			key=xzkjcnxlkcjlk['key'] 
+			website=hash[key]
+			console.log(website)
+			window.open('http://'+website,'_blank')//location是全局变量
+		}
+	</script>
+</body>
+</html>
