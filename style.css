@@ -13,7 +13,6 @@ kbd{
 	text-transform: uppercase;
 	position: relative;
 }
-/*编辑*/
 kbd>button{         
 	position: absolute;
 	right:0;
@@ -23,15 +22,57 @@ kbd>button{
 kbd:hover>button{
 	display: inline-block;
 }
+body{
+	background: gray url(./img/wall1-min.jpg) no-repeat center center;
+	background-size: cover;
+}
 main{
 	text-align: center;
+	display: flex;   /*弹性核*/
+	justify-content: center; /*左右居中*/
+	align-items: center; /*垂直居中*/
+	height: 100vh; /*屏幕的高度 viewport height*/
 }
-#mainXXX{
+#main{
 	display: inline-block;
 }
-#mainXXX>div:nth-child(2){
-	margin-left: 0.4em;
+#main>div:nth-child(2){
+	margin-left: -9px;
 }
-#mainXXX>div:nth-child(3){
-	margin-left: 0.5em;
+#main>div:nth-child(3){
+	margin-left: -69.5px;
+}
+.wrapper{
+	background: rgba(128,128,128,0.3);
+	border-radius: 10px;
+}
+.key{
+	width: 50px;
+	height: 42px;
+	background: linear-gradient(to bottom, #292929 0%,#111111 100%);
+	border: 1px solid #292929;
+	color: #CFCFCF;
+	border-radius: 8px;
+	box-shadow: 0 0 0 1px #1A1B1C,0 0 0 1px #131313,0 0 0 1px #0D0D0D,0 0 0 1px #000000,0 2.5px 0 1px #171717;
+	position: relative;
+	font-size: 16px;
+	font-family: Helvetica;
+}
+.row{
+	margin: 10px;
+}
+.row .key{
+	margin: 0 6px;
+}
+.key img{
+	width: 15px;
+	height: 15px;
+	position: absolute;
+	left: 3px;
+	bottom: 3px;
+}
+.key .text{
+	position: absolute;
+	left: 3px;
+	top: 1px; 
 }
