@@ -23,6 +23,7 @@ kbd>button{
     color: #CFCFCF;
     font-family: Helvetica;
     text-transform: lowercase;
+    cursor: pointer;
 }
 kbd:hover>button{
 	display: inline-block;
