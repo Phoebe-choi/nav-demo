@@ -15,9 +15,14 @@ kbd{
 }
 kbd>button{         
 	position: absolute;
-	right:0;
-	bottom:0;
+	right:2px;
+	bottom:0.5px;
 	display: none;
+	border: none;
+    background: none;
+    color: #CFCFCF;
+    font-family: Helvetica;
+    text-transform: lowercase;
 }
 kbd:hover>button{
 	display: inline-block;
@@ -37,18 +42,21 @@ main{
 	display: inline-block;
 }
 #main>div:nth-child(2){
-	margin-left: -9px;
+	margin-left: 53px;
 }
 #main>div:nth-child(3){
-	margin-left: -69.5px;
+	margin-left: 101px;
+}
+#main>div:nth-child(4){
+	margin-left: 94.5px;
 }
 .wrapper{
 	background: rgba(128,128,128,0.3);
 	border-radius: 10px;
 }
 .key{
-	width: 50px;
-	height: 42px;
+	width: 55px;
+	height: 47px;
 	background: linear-gradient(to bottom, #292929 0%,#111111 100%);
 	border: 1px solid #292929;
 	color: #CFCFCF;
@@ -59,10 +67,10 @@ main{
 	font-family: Helvetica;
 }
 .row{
-	margin: 10px;
+	margin: 17px;
 }
 .row .key{
-	margin: 0 6px;
+	margin: 0 9px;
 }
 .key img{
 	width: 15px;
@@ -73,6 +81,6 @@ main{
 }
 .key .text{
 	position: absolute;
-	left: 3px;
-	top: 1px; 
+	left: 4px;
+	top: 2px; 
 }

@@ -16,24 +16,28 @@
 	</main>
 	<footer></footer>
 	<script>
+
 		//1.初始化数据
-		var keys={
-			'0':{0:'q',1:'w',2:'e',3:'r',4:'t',5:'y',6:'u',7:'i',8:'o',9:'p',length:10},
-			'1':{0:'a',1:'s',2:'d',3:'f',4:'g',5:'h',6:'j',7:'k',8:'l',length:9},
-			'2':{0:'z',1:'x',2:'c',3:'v',4:'b',5:'n',6:'m',length:7},
-			'length':3
+		var hashA=init()
+		var keys=hashA['keys']
+		var hash=hashA['hash']
+
+
+		//2.生成键盘
+		generateKeyboard(keys,hash)
+
+
+		//3.监听用户动作
+		listenToUser(hash)
+
+
+		//下面是工具函数
+		function getFromLocalStorage(name){
+			return JSON.parse(localStorage.getItem(name)||'null')
 		}
-		var hash={
-			'w':'weibo.com',
-			'i':'iqiyi.com',
-			'o':'opera.com',
-			'j':'www.jianshu.com',
-			'z':'zhihu.com',
-		}
-		//取出localStorage中的zzz对应的hash
-		var hashInLocalStorage=getFromLocalStorage('zzz')
-		if(hashInLocalStorage){
-				hash=hashInLocalStorage
+
+		function tag(tagName){
+		return document.createElement(tagName)
 		}
 
 		function createSpan(textContent){
@@ -42,11 +46,13 @@
 			span.className="text"
 			return span
 		}	
+
 		function createButton(id){
 			var button=tag('button')
-				button.textContent='编辑'
+				button.textContent='edit'
 				button.id=id
 				button.onclick=function(xzkjcnxlkcjlk){
+					//xzkjcnxlkcjlk['target']就是用户点击的元素
 					var button2=xzkjcnxlkcjlk['target']
 					var img2=button2.previousSibling
 					var key=button2['id']
@@ -54,68 +60,88 @@
 					hash[key]=x 
 					img2.src='http://'+x+'/favicon.ico'
 					img2.onerror=function(xxx){
-							xxx.target.src=''
+							xxx.target.src='//i.loli.net/2017/12/11/5a2e4ba8b6847.png'
 					}
 					localStorage.setItem('zzz',JSON.stringify(hash))	
 				}
 				return button
 		}
+
 		function createImage(domain){
 			var image=tag('img')
-					// image.src='http://'+hash[row[index2]]+'/favicon.ico'
 					if(domain){
 							image.src='http://'+domain+'/favicon.ico'
 					}else{
-							image.src=''
+							image.src='//i.loli.net/2017/12/11/5a2e4ba8b6847.png'
 					}
 					image.onerror=function(xxx){
-							xxx.target.src=''
+							xxx.target.src='//i.loli.net/2017/12/11/5a2e4ba8b6847.png'
 					}
 					return image
 		}
-		//2.生成键盘
-		for(var index=0;index<keys['length'];index=index+1){
-				var div1=tag('div') 
-				div1.className='row'
 
-				main.appendChild(div1)
+		function init(){
+			var keys={
+			'0':{0:'~',1:'1',2:'2',3:'3',4:'4',5:'5',6:'6',7:'7',8:'8',9:'9',10:'0',11:'-',12:'+',length:13},
+			'1':{0:'q',1:'w',2:'e',3:'r',4:'t',5:'y',6:'u',7:'i',8:'o',9:'p',10:'{',11:'}',length:12},
+			'2':{0:'a',1:'s',2:'d',3:'f',4:'g',5:'h',6:'j',7:'k',8:'l',9:':',10:'"',length:11},
+			'3':{0:'z',1:'x',2:'c',3:'v',4:'b',5:'n',6:'m',7:'<',8:'>',9:'?',length:10},
+			'length':4
+			}
+			var hash={
+				'w':'weibo.com',
+				'i':'iqiyi.com',
+				'j':'www.jianshu.com',
+				'z':'zhihu.com',
+				'g':'google.com'
+			}
+			//取出localStorage中的zzz对应的hash
+			var hashInLocalStorage=getFromLocalStorage('zzz')
+			if(hashInLocalStorage){
+					hash=hashInLocalStorage
+			}
+			return{
+				"keys":keys,
+				"hash":hash
+			}
+		}
 
-				var row=keys[index] 
+		function generateKeyboard(keys,hash){
+			for(var index=0;index<keys['length'];index=index+1){
+			var div1=tag('div') 
+			div1.className='row'
+
+			main.appendChild(div1)
+
+			var row=keys[index] 
 				// console.log(row) 
 				for(var index2=0;index2<row['length'];index2=index2+1){
-						var span=createSpan(row[index2])
+					var span=createSpan(row[index2])
 
-						var button=createButton(row[index2])
+					var button=createButton(row[index2])
 
-						var image=createImage(hash[row[index2]])
-						
-						var keybd=tag('kbd')
-						keybd.className='key'
+					var image=createImage(hash[row[index2]])
+					
+					var keybd=tag('kbd')
+					keybd.className='key'
 
-						keybd.appendChild(span)
-						keybd.appendChild(image)
-						keybd.appendChild(button)
-						
-						div1.appendChild(keybd)
-					}
-		}
-		//3.监听用户
-		document.onkeypress=function(xzkjcnxlkcjlk){
-			var key=xzkjcnxlkcjlk['key'] 
-			var website=hash[key]
-			console.log(website)
-			window.open('http://'+website,'_blank')
+					keybd.appendChild(span)
+					keybd.appendChild(image)
+					keybd.appendChild(button)
+
+					div1.appendChild(keybd)
+				}
+			}
 		}
 
-
-
-		function getFromLocalStorage(name){
-			return JSON.parse(localStorage.getItem(name)||'null')
+		function listenToUser(hash){
+			document.onkeypress=function(xzkjcnxlkcjlk){
+				var key=xzkjcnxlkcjlk['key'] 
+				var website=hash[key]
+				// console.log(website)
+				window.open('http://'+website,'_blank')
+			}
 		}
-		function tag(tagName){
-		return document.createElement(tagName)
-		}
-	
 	</script>
 </body>
 </html>
