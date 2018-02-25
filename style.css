@@ -29,7 +29,7 @@ kbd:hover>button{
 	display: inline-block;
 }
 body{
-	background: gray url(./img/wall1-min.jpg) no-repeat center center;
+	background: gray url(./img/6.jpg) no-repeat center center;
 	background-size: cover;
 }
 main{
@@ -43,17 +43,18 @@ main{
 	display: inline-block;
 }
 #main>div:nth-child(2){
-	margin-left: 53px;
+	margin-left: 1px;
 }
 #main>div:nth-child(3){
-	margin-left: 101px;
+	margin-left: 33px;
 }
 #main>div:nth-child(4){
-	margin-left: 94.5px;
+	margin-left: 35.5px;
 }
 .wrapper{
-	background: rgba(128,128,128,0.3);
-	border-radius: 10px;
+	background: rgba(255,255,255,0.2);
+	border-radius: 10px;]
+	margin-top: 60px;
 }
 .key{
 	width: 55px;
@@ -82,6 +83,7 @@ main{
 }
 .key .text{
 	position: absolute;
-	left: 4px;
-	top: 2px; 
+	left: 21px;
+	top: 15px;
+	font-size: 17px;
 }
