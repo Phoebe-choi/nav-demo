@@ -1,4 +1,5 @@
-# 导航网站
+## [预览效果](https://phoebe-choi.github.io/nav-demo/)
+## 导航网站
 
 这是一个漂亮的导页面
 #### 主要功能
